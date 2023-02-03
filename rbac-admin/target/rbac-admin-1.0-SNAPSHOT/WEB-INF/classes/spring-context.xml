@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--解析db.properties
+         system-properties-mode 配置配置文件对环境变量的支持
+         如db.properties有user/name/username=admin 那么解析出来会出现user=DESKTOP-9VOLVV4
+        -->
+    <context:property-placeholder location="classpath*:db.properties"
+                                  system-properties-mode="FALLBACK"></context:property-placeholder>
+    <!--配置数据源开始-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <!--最在连接数据-->
+        <property name="maxActive" value="${jdbc.maxActive}"></property>
+        <!--数据库类型-->
+        <property name="dbType" value="${jdbc.dbType}"></property>
+        <!--最大的空闲的连接数据-->
+        <property name="maxIdle" value="${jdbc.maxIdle}"></property>
+        <!--最小的空闲的连接数据-->
+        <property name="minIdle" value="${jdbc.minIdle}"></property>
+    </bean>
+    <!--配置数据源结束-->
+
+    <!--声明mybatis的配置-->
+    <bean id="configuration" class="org.apache.ibatis.session.Configuration">
+        <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"></property>
+    </bean>
+    <!--声明mybatis的结束-->
+    <!--配置sqlSessionFactory开始-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--配置mapper.xml地址-->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath*:mapper/*.xml</value>
+            </array>
+        </property>
+        <!--配置常用配置-->
+        <property name="configuration" ref="configuration"></property>
+        <!--配置别名-->
+        <!--配置分页插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor"></bean>
+            </array>
+        </property>
+    </bean>
+    <!--配置sqlSessionFactory结束-->
+
+    <!--配置mapper接口扫描代理开始-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--注入扫描的包名-->
+        <property name="basePackage" value="com.powernode.mapper">
+        </property>
+        <!--注入sqlSessionFactoryName-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+    <!--配置mapper接口扫描代理结束-->
+
+
+    <!--配置事务开始-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--开启事务注解-->
+    <tx:annotation-driven></tx:annotation-driven>
+    <!--配置事务结束-->
+
+    <!--扫描的配置-->
+    <context:component-scan base-package="com.powernode.service.impl"></context:component-scan>
+</beans>
