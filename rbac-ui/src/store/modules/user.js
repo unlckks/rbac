@@ -30,14 +30,14 @@ const mutations = {
 
 const actions = {
   // vuex里面的用户登陆  给登录页面调用的
-  // commit相当于vuex里面的一个方法
+  //commit相当于vuex里面的一个方法
   // userInfo就是登录页面转过来的值
   login({ commit }, userInfo) {
-    // 对象结构
-    const { username, password, code } = userInfo
-    // 启动一个Promise
+    //对象结构
+    const { username, password,code } = userInfo
+    //启动一个Promise
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password, code: code }).then(response => {
+      login({ username: username.trim(), password: password ,code:code}).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
@@ -52,16 +52,16 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
-        // data后台返回的里面有user和permissions
+        //data后台返回的里面有user和permissions
         const { data } = response
         const { permissions, user } = data
-        // 把权限放到vuex里面
+        //把权限放到vuex里面
         commit('SET_ROLES', permissions)
-        // 设置用户名
+        //设置用户名
         commit('SET_NAME', user.userName)
-        // 处理头像，如果有头像，就使用，没有就使用默认的头像
-        const showAvatar = (user.avatar == '' || user.avatar == null) ? require('@/assets/title.png') : process.env.VUE_APP_BASE_API + user.avatar
-        commit('SET_AVATAR', showAvatar)
+        //处理头像，如果有头像，就使用，没有就使用默认的头像
+        const showAvatar = (user.avatar == "" || user.avatar == null) ? require("@/assets/title.png") : process.env.VUE_APP_BASE_API + user.avatar;
+        commit('SET_AVATAR',showAvatar)
         resolve(data)
       }).catch(error => {
         reject(error)

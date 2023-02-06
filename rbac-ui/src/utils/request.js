@@ -38,6 +38,7 @@ service.interceptors.response.use(
           type: 'warning'
         }).then(() => {
           router.push({ path: '/login' })
+          return
         })
       } else {
         Message({

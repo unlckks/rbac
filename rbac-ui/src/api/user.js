@@ -9,7 +9,7 @@ export function login(data) {
   return request({
     url: '/login',
     method: 'post',
-    params: data
+    params:data
   })
 }
 
@@ -34,8 +34,8 @@ export function logout() {
     method: 'get'
   })
 }
-// 得到验证码
-export function getCaptcha() {
+//得到验证码
+export function getCaptcha(){
   return request({
     url: `/captcha/getCaptcha`,
     method: 'get'

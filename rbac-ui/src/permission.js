@@ -9,7 +9,7 @@ import getPageTitle from '@/utils/get-page-title'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
-// 设置路由守卫
+//设置路由守卫
 router.beforeEach(async(to, from, next) => {
   // 启动进度条
   NProgress.start()
@@ -25,12 +25,12 @@ router.beforeEach(async(to, from, next) => {
     } else {
       const roles = store.getters.roles && store.getters.roles.length > 0
       if (roles) {
-        next() // 直接放行路由，也就是可以切换
+        next() //直接放行路由，也就是可以切换
       } else {
         try {
-          // 会去调用user/getInfo
+          //会去调用user/getInfo
           const { permissions } = await store.dispatch('user/getInfo')
-          const accessRoutes = await store.dispatch('permission/generateRoutes', permissions)
+          const accessRoutes = await store.dispatch('permission/generateRoutes',permissions)
           // 处理动态路由【去请求后台的菜单】
           router.addRoutes(accessRoutes)
           next({ ...to, replace: true })

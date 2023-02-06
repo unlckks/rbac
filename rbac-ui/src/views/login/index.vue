@@ -1,42 +1,36 @@
 <template>
   <div class="login">
-    <el-form
-      ref="loginForm"
-      :model="loginForm"
-      :rules="loginRules"
-      class="login-form"
-      autocomplete="on"
-      label-position="left"
-    >
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on"
+             label-position="left">
       <div class="title-container">
         <h3 class="title">用户登陆</h3>
       </div>
       <el-form-item prop="username">
         <el-input
-          ref="username"
           v-model="loginForm.username"
           type="text"
+          ref="username"
           auto-complete="off"
           tabindex="1"
           placeholder="账号"
         >
-          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
+          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon"/>
         </el-input>
       </el-form-item>
 
       <el-form-item prop="password">
         <el-input
-          :key="passwordType"
-          ref="password"
           v-model="loginForm.password"
+          :key="passwordType"
           :type="passwordType"
           tabindex="2"
+          ref="password"
           auto-complete="off"
           placeholder="密码"
           @keyup.enter.native="handleLogin"
         >
-          <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
-          <svg-icon slot="suffix" :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" @click="showPwd" />
+          <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon"/>
+          <svg-icon slot="suffix" @click="showPwd" :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>
         </el-input>
       </el-form-item>
       <el-form-item prop="code">
@@ -47,18 +41,14 @@
           style="width: 63%"
           @keyup.enter.native="handleLogin"
         >
-          <svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon" />
+          <svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon"/>
         </el-input>
         <div class="login-code">
-          <img :src="codeUrl" class="login-code-img" @click="getCaptcha">
+          <img :src="codeUrl" @click="getCaptcha" class="login-code-img"/>
         </div>
       </el-form-item>
-      <el-button
-        :loading="loading"
-        type="primary"
-        style="width:100%;margin-bottom:30px;"
-        @click.native.prevent="handleLogin"
-      >
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
+                 @click.native.prevent="handleLogin">
         <span v-if="!loading">登 录</span>
         <span v-else>登 录 中...</span>
       </el-button>
@@ -68,39 +58,39 @@
 
 <script>
 import SocialSign from './components/SocialSignin'
-import { getCaptcha } from '@/api/user'
+import {getCaptcha} from "@/api/user";
 
 export default {
   name: 'Login',
-  components: { SocialSign },
+  components: {SocialSign},
   data() {
     return {
       loginForm: {
         username: 'admin',
         password: '123456',
-        code: undefined
+        code:undefined
       },
       loginRules: {
         username: [
-          { required: true, trigger: 'blur', message: '请输入您的账号' }
+          {required: true, trigger: "blur", message: "请输入您的账号"}
         ],
         password: [
-          { required: true, trigger: 'blur', message: '请输入您的密码' }
+          {required: true, trigger: "blur", message: "请输入您的密码"}
         ],
-        code: [{ required: true, trigger: 'change', message: '请输入验证码' }]
+        code: [{required: true, trigger: "change", message: "请输入验证码"}]
       },
       passwordType: 'password',
       capsTooltip: false,
       loading: false,
       showDialog: false,
       redirect: undefined,
-      // 验证码地址
-      codeUrl: undefined
+      //验证码地址
+      codeUrl:undefined
     }
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         const query = route.query
         if (query) {
           this.redirect = query.redirect
@@ -120,10 +110,10 @@ export default {
     }
   },
   methods: {
-    // 得到验证码
-    getCaptcha() {
-      getCaptcha().then(res => {
-        this.codeUrl = res.data
+    //得到验证码
+    getCaptcha(){
+      getCaptcha().then(res=>{
+        this.codeUrl=res.data;
       })
     },
     showPwd() {
@@ -136,22 +126,22 @@ export default {
         this.$refs.password.focus()
       })
     },
-    // 做登录
+    //做登录
     handleLogin() {
-      // 触发验证
+      //触发验证
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true// 把登录按钮上的文字变成登录中
-          // 调用vuex里面的action
+          this.loading = true//把登录按钮上的文字变成登录中
+          //调用vuex里面的action
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
-              // 成功之后切换路由地址
-              this.$router.push({ path: this.redirect || '/' })
+              //成功之后切换路由地址
+              this.$router.push({path: this.redirect || '/'})
               this.loading = false
             })
             .catch(() => {
               this.loading = false
-              // 刷新验证码
+              //刷新验证码
               this.getCaptcha()
             })
         }

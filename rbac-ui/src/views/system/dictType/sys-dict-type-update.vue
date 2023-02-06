@@ -2,13 +2,13 @@
   <div>
     <el-form ref="form" :rules="rules" :model="sysDictType" label-width="80px" size="small">
       <el-form-item label="字典名称" prop="dictName">
-        <el-input v-model="sysDictType.dictName" placeholder="请输入字典名称" clearable />
+        <el-input v-model="sysDictType.dictName" placeholder="请输入字典名称" clearable/>
       </el-form-item>
-      <el-form-item label="字典类型" prop="dictType">
-        <el-input v-model="sysDictType.dictType" placeholder="请输入字典类型" clearable />
+      <el-form-item label="字典类型"  prop="dictType">
+        <el-input v-model="sysDictType.dictType" placeholder="请输入字典类型" clearable/>
       </el-form-item>
       <el-form-item label="备注" prop="remark">
-        <el-input v-model="sysDictType.remark" placeholder="请输入备注" type="textarea" clearable />
+        <el-input v-model="sysDictType.remark" placeholder="请输入备注" type="textarea" clearable/>
       </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-radio-group v-model="sysDictType.status">
@@ -25,7 +25,7 @@
 
 <script>
 import sysDictTypeApi from '@/api/system/sysDictType'
-import sysDictDataApi from '@/api/system/sysDictData'
+import sysDictDataApi from "@/api/system/sysDictData";
 
 export default {
   props: {
@@ -44,16 +44,21 @@ export default {
       // 表单校验
       rules: {
         dictName: [
-          { required: true, message: '字典名称不能为空', trigger: 'blur' }
+          { required: true, message: "字典名称不能为空", trigger: "blur" }
         ],
         dictType: [
-          { required: true, message: '字典类型不能为空', trigger: 'blur' }
+          { required: true, message: "字典类型不能为空", trigger: "blur" }
         ]
       },
-      statusOptions: []
+      //声明属性去存在放字典数据
+      statusOptions:[]
     }
   },
-  // 监听父组件里面的activeId
+  created() {
+    //加载字典类型加载数据状态的字典数据
+    this.getDictDataByDictType();
+  },
+  //监听父组件里面的activeId
   watch: {
     activeId: {
       immediate: true,
@@ -62,16 +67,11 @@ export default {
       }
     }
   },
-  created() {
-    // 加载字典类型加载数据状态的数据
-    this.getDictDataByDictType()
-  },
   methods: {
-    // 根据字典类型加载数据状态的字典数据
-    getDictDataByDictType() {
-      // 掉后台传值
-      sysDictDataApi.getDictDataByDictType('sys_status_type').then(res => {
-        this.statusOptions = res.data
+    //根据字典类型加载数据状态的字典数据
+    getDictDataByDictType(){
+      sysDictDataApi.getDictDataByDictType("sys_status_type").then(res=>{
+        this.statusOptions=res.data;
       })
     },
     // 根据id查询
@@ -82,7 +82,7 @@ export default {
     },
     // 更新字典类型
     update() {
-      this.$refs['form'].validate(valid => {
+      this.$refs["form"].validate(valid => {
         if (valid) {
           sysDictTypeApi.update(this.sysDictType).then(res => {
             this.$message.success(res.msg)

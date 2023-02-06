@@ -69,9 +69,9 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      // 同步调用退出方法
+      //同步调用退出方法
       await this.$store.dispatch('user/logout')
-      // 回到登陆页面
+      //回到登陆页面
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }

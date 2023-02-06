@@ -20,11 +20,11 @@
             :key="item.value"
             :label="item.label"
             :value="item.value"
-          />
+          ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="备注" prop="remark">
-        <el-input v-model="sysDictData.remark" type="textarea" placeholder="请输入内容" />
+        <el-input v-model="sysDictData.remark" type="textarea" placeholder="请输入内容"></el-input>
       </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-radio-group v-model="sysDictData.status">
@@ -43,10 +43,18 @@
 import sysDictDataApi from '@/api/system/sysDictData'
 
 export default {
-  props: {
-    activeType: {
+  props:{
+    activeType:{
       type: String,
       default: null
+    }
+  },
+  watch: {
+    activeType: {
+      immediate: true,
+      handler: function(newVal, oldVal) {
+        this.sysDictData.dictType=newVal
+      }
     }
   },
   data() {
@@ -57,50 +65,42 @@ export default {
       },
       // 数据标签回显样式
       dictSkinOptions: [
-        { value: '', label: '默认' },
-        { value: 'success', label: '成功' },
-        { value: 'info', label: '信息' },
-        { value: 'warning', label: '警告' },
-        { value: 'danger', label: '危险' }
+        {value: "",label: "默认"},
+        {value: "success", label: "成功"},
+        {value: "info", label: "信息"},
+        {value: "warning", label: "警告"},
+        {value: "danger",label: "危险"}
       ],
       // 表单校验
       rules: {
         dictLabel: [
-          { required: true, message: '数据标签不能为空', trigger: 'blur' }
+          { required: true, message: "数据标签不能为空", trigger: "blur" }
         ],
         dictValue: [
-          { required: true, message: '数据键值不能为空', trigger: 'blur' }
+          { required: true, message: "数据键值不能为空", trigger: "blur" }
         ],
         dictSort: [
-          { required: true, message: '数据顺序不能为空', trigger: 'blur' }
+          { required: true, message: "数据顺序不能为空", trigger: "blur" }
         ]
       },
-      statusOptions: []
-    }
-  },
-  watch: {
-    activeType: {
-      immediate: true,
-      handler: function(newVal, oldVal) {
-        this.sysDictData.dictType = newVal
-      }
+      //声明属性去存在放字典数据
+      statusOptions:[]
     }
   },
   created() {
-    // 加载字典类型加载数据状态的数据
-    this.getDictDataByDictType()
+    //加载字典类型加载数据状态的字典数据
+    this.getDictDataByDictType();
   },
   methods: {
-    // 根据字典类型加载数据状态的字典数据
-    getDictDataByDictType() {
-      // 掉后台传值
-      sysDictDataApi.getDictDataByDictType('sys_status_type').then(res => {
-        this.statusOptions = res.data
+    //根据字典类型加载数据状态的字典数据
+    getDictDataByDictType(){
+      sysDictDataApi.getDictDataByDictType("sys_status_type").then(res=>{
+        this.statusOptions=res.data;
       })
     },
     // 添加字典类型
     add() {
-      this.$refs['form'].validate(valid => {
+      this.$refs["form"].validate(valid => {
         if (valid) {
           sysDictDataApi.save(this.sysDictData).then(res => {
             this.$message.success(res.msg)

@@ -9,45 +9,54 @@ export default {
     return request({
       url: `/${groupName}/getByPage`,
       method: 'post',
-      data: data
+      data:data
     })
   },
   /**
    * 添加字典类型
    */
-  save(data) {
+  save(data){
     return request({
       url: `/${groupName}/save`,
       method: 'post',
-      data: data
+      data:data
     })
   },
   /**
    * 根据字典ID查询字典类型对象
    */
-  getById(id) {
+  getById(id){
     return request({
-      url: `/${groupName}/get/` + id,
+      url: `/${groupName}/get/`+id,
       method: 'get'
     })
   },
   /**
    * 修改字典类型
    */
-  update(data) {
+  update(data){
     return request({
       url: `/${groupName}/update`,
       method: 'put',
-      data: data
+      data:data
     })
   },
   /**
    * 删除字典类型
    */
-  deleteById(id) {
+  deleteById(id){
     return request({
-      url: `/${groupName}/delete/` + id,
+      url: `/${groupName}/delete/`+id,
       method: 'delete'
+    })
+  },
+  /**
+   * 刷新缓存
+   */
+  refreshCache(){
+    return request({
+      url: `/${groupName}/refreshCache`,
+      method: 'get'
     })
   }
 }

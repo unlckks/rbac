@@ -18,10 +18,10 @@ import './icons' // icon
 import './permission' // permission control
 import './utils/error-log' // error log
 
-// 引入自定义的字典标签组件
+//引入自定义的字典标签组件
 import dictTag from '@/components/DictTag'
-// 声明全局组件
-Vue.component('dict-tag', dictTag)
+//声明全局组件
+Vue.component("dict-tag",dictTag)
 
 import * as filters from './filters' // global filters
 
