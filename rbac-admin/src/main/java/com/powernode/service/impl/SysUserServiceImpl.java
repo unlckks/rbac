@@ -13,7 +13,7 @@ import java.util.List;
  *  @Date: 2023-02-03 15:09
  */
 @Service
-public class SysUserServiceImpl implements SysUserService{
+public class SysUserServiceImpl  implements SysUserService{
 
     @Resource
     private SysUserMapper sysUserMapper;

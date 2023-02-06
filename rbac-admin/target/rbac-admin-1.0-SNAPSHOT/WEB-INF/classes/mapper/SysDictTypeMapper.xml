@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powernode.mapper.SysDictTypeMapper">
+  <resultMap id="BaseResultMap" type="com.powernode.domain.SysDictType">
+    <!--@mbg.generated-->
+    <!--@Table sys_dict_type-->
+    <id column="dict_id" property="dictId"/>
+    <result column="dict_name" property="dictName"/>
+    <result column="dict_type" property="dictType"/>
+    <result column="status" property="status"/>
+    <result column="create_by" property="createBy"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_by" property="updateBy"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="remark" property="remark"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    dict_id, dict_name, dict_type, `status`, create_by, create_time, update_by, update_time,
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List"/>
+    from sys_dict_type
+    where dict_id = #{dictId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete
+    from sys_dict_type
+    where dict_id = #{dictId}
+  </delete>
+  <insert id="insert" keyColumn="dict_id" keyProperty="dictId" parameterType="com.powernode.domain.SysDictType"
+          useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_dict_type (dict_name, dict_type, `status`, create_by, create_time, update_by,
+    update_time, remark)
+    values (#{dictName}, #{dictType}, #{status}, #{createBy}, #{createTime}, #{updateBy},
+    #{updateTime}, #{remark})
+  </insert>
+  <insert id="insertSelective" keyColumn="dict_id" keyProperty="dictId"
+          parameterType="com.powernode.domain.SysDictType" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_dict_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictName != null and dictName != ''">
+        dict_name,
+      </if>
+      <if test="dictType != null and dictType != ''">
+        dict_type,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createBy != null and createBy != ''">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remark != null and remark != ''">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictName != null and dictName != ''">
+        #{dictName},
+      </if>
+      <if test="dictType != null and dictType != ''">
+        #{dictType},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="createBy != null and createBy != ''">
+        #{createBy},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        #{updateBy},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime},
+      </if>
+      <if test="remark != null and remark != ''">
+        #{remark},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.powernode.domain.SysDictType">
+    <!--@mbg.generated-->
+    update sys_dict_type
+    <set>
+      <if test="dictName != null and dictName != ''">
+        dict_name = #{dictName},
+      </if>
+      <if test="dictType != null and dictType != ''">
+        dict_type = #{dictType},
+      </if>
+      <if test="status != null">
+        `status` = #{status},
+      </if>
+      <if test="createBy != null and createBy != ''">
+        create_by = #{createBy},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        update_by = #{updateBy},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime},
+      </if>
+      <if test="remark != null and remark != ''">
+        remark = #{remark},
+      </if>
+    </set>
+    where dict_id = #{dictId}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.powernode.domain.SysDictType">
+    <!--@mbg.generated-->
+    update sys_dict_type
+    set dict_name   = #{dictName},
+    dict_type   = #{dictType},
+    `status`    = #{status},
+    create_by   = #{createBy},
+    create_time = #{createTime},
+    update_by   = #{updateBy},
+    update_time = #{updateTime},
+    remark      = #{remark}
+    where dict_id = #{dictId}
+  </update>
+
+  <!--查询所有有字典类型-->
+  <select id="queryAllDictType" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List">
+  </include> from sys_dict_type
+    <where>
+      <if test="params.dictName != null and params.dictName!=''">
+        and dict_name like concat('%',#{params.dictName},'%')
+      </if>
+      <if test="params.status != null">
+        and status = #{params.status}
+      </if>
+    </where>
+  </select>
+</mapper>

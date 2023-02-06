@@ -26,6 +26,7 @@ import java.util.List;
 public class LoginController  extends  BaseController{
     @Resource
     private SysUserService sysUserService ;
+
     /**
      * 登录方法
      *
