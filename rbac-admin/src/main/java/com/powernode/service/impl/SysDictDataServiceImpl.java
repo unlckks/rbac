@@ -58,18 +58,15 @@ public class SysDictDataServiceImpl implements SysDictDataService{
 
     @Override
     public List<SysDictData> queryDictDataByDictType(String dictType) {
-        //根据类型到缓冲区中取
+        //根据类型到缓存里面取
         List<SysDictData> dictDataByKey = cacheService.getDictDataByKey(dictType);
-        //判断
-        if (dictDataByKey !=null){
-            return dictDataByKey ;
+        if(dictDataByKey!=null){
+            return dictDataByKey;
         }
-        //缓存取没有要查询的
+        //说明缓存里面没有 要查询数据
         List<SysDictData> dictDataList = this.sysDictDataMapper.queryDictDataByDictType(dictType);
-        //要把数据放入缓冲区
+        //把数据再放到缓存里面
         cacheService.setDictDataByDictType(dictType,dictDataList);
-
         return dictDataList;
     }
-
 }

@@ -63,7 +63,7 @@ export default {
       sysDictData: {
         status: 0
       },
-      // 数据标签回显样式
+      // 数据标签显示样式
       dictSkinOptions: [
         {value: "",label: "默认"},
         {value: "success", label: "成功"},
@@ -83,7 +83,7 @@ export default {
           { required: true, message: "数据顺序不能为空", trigger: "blur" }
         ]
       },
-      //声明属性去存在放字典数据
+      //声明属性去存放字典数据
       statusOptions:[]
     }
   },
