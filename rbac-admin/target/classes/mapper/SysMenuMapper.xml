@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powernode.mapper.SysMenuMapper">
+    <resultMap id="BaseResultMap" type="com.powernode.domain.SysMenu">
+        <!--@mbg.generated-->
+        <!--@Table sys_menu-->
+        <id column="menu_id" property="menuId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="path" property="path"/>
+        <result column="component" property="component"/>
+        <result column="menu_type" property="menuType"/>
+        <result column="visible" property="visible"/>
+        <result column="status" property="status"/>
+        <result column="perms" property="perms"/>
+        <result column="icon" property="icon"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        menu_id, menu_name, parent_id, order_num, `path`, component, menu_type, visible,
+        `status`, perms, icon, create_by, create_time, update_by, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        where menu_id = #{menuId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from sys_menu
+        where menu_id = #{menuId}
+    </delete>
+    <insert id="insert" parameterType="com.powernode.domain.SysMenu">
+        <!--@mbg.generated-->
+        insert into sys_menu (menu_id, menu_name, parent_id, order_num, `path`, component,
+                              menu_type, visible, `status`, perms, icon, create_by, create_time,
+                              update_by, update_time)
+        values (#{menuId}, #{menuName}, #{parentId}, #{orderNum}, #{path}, #{component},
+                #{menuType}, #{visible}, #{status}, #{perms}, #{icon}, #{createBy}, #{createTime},
+                #{updateBy}, #{updateTime})
+    </insert>
+    <insert id="insertSelective" parameterType="com.powernode.domain.SysMenu">
+        <!--@mbg.generated-->
+        insert into sys_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="menuId != null">
+                menu_id,
+            </if>
+            <if test="menuName != null">
+                menu_name,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="orderNum != null">
+                order_num,
+            </if>
+            <if test="path != null">
+                `path`,
+            </if>
+            <if test="component != null">
+                component,
+            </if>
+            <if test="menuType != null">
+                menu_type,
+            </if>
+            <if test="visible != null">
+                visible,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="perms != null">
+                perms,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="menuId != null">
+                #{menuId},
+            </if>
+            <if test="menuName != null">
+                #{menuName},
+            </if>
+            <if test="parentId != null">
+                #{parentId},
+            </if>
+            <if test="orderNum != null">
+                #{orderNum},
+            </if>
+            <if test="path != null">
+                #{path},
+            </if>
+            <if test="component != null">
+                #{component},
+            </if>
+            <if test="menuType != null">
+                #{menuType},
+            </if>
+            <if test="visible != null">
+                #{visible},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="perms != null">
+                #{perms},
+            </if>
+            <if test="icon != null">
+                #{icon},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.powernode.domain.SysMenu">
+        <!--@mbg.generated-->
+        update sys_menu
+        <set>
+            <if test="menuName != null">
+                menu_name = #{menuName},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="orderNum != null">
+                order_num = #{orderNum},
+            </if>
+            <if test="path != null">
+                `path` = #{path},
+            </if>
+            <if test="component != null">
+                component = #{component},
+            </if>
+            <if test="menuType != null">
+                menu_type = #{menuType},
+            </if>
+            <if test="visible != null">
+                visible = #{visible},
+            </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="perms != null">
+                perms = #{perms},
+            </if>
+            <if test="icon != null">
+                icon = #{icon},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where menu_id = #{menuId}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.powernode.domain.SysMenu">
+        <!--@mbg.generated-->
+        update sys_menu
+        set menu_name   = #{menuName},
+            parent_id   = #{parentId},
+            order_num   = #{orderNum},
+            `path`      = #{path},
+            component   = #{component},
+            menu_type   = #{menuType},
+            visible     = #{visible},
+            `status`    = #{status},
+            perms       = #{perms},
+            icon        = #{icon},
+            create_by   = #{createBy},
+            create_time = #{createTime},
+            update_by   = #{updateBy},
+            update_time = #{updateTime}
+        where menu_id = #{menuId}
+    </update>
+    <!--  查询所有菜单权限-->
+    <select id="queryAllMenuList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List">
+        </include>
+        from sys_menu
+        <where>
+            <if test="menu.menuName != null and menu.menuName != ''">
+                and menu_name like concat('%', #{menu.menuName}, '%')
+            </if>
+            <if test="menu.status != null">
+                and status = #{menu.status}
+            </if>
+        </where>
+        order by parent_id, order_num
+    </select>
+    <!--普通用户 ,更具用户ID查询拥有的菜单和权限 -->
+    <select id="selectMenuListByUserId" resultMap="BaseResultMap">
+        select distinct t1.*
+        from sys_menu t1
+                     left join sys_role_menu on t1.menu_id = srm.menu_id
+                     left join sys_usr_role sur on srm.role_id = sur.role_id
+                where
+                  and sur.user_id = #{userId}
+        <if test="menu.menuName != null and menu.menuName != ''">
+            and t1.menu_name like concat('%'
+              , #{menu.menuName}
+              , '%')
+        </if>
+        <if test="menu.status != null">
+            and status = #{menu.status}
+        </if>
+    </select>
+    <!-- 查询子节点-->
+    <select id="queryChildrenCountByMenuId" resultType="java.lang.Integer">
+        select count(1)
+        from sys_menu
+        where parent_id = #{menuId}
+    </select>
+<!--查询最大的菜单-->
+    <select id="queryMaxMenuIdByMenuType" resultType="java.lang.Long">
+        select max( menu_id) from  sys_menu where   parent_id =#{parentId} and menu_type =#{menuType}
+    </select>
+<!--查询所在目录及菜单-->
+    <select id="selectMenuListMC" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List">
+    </include>from  sys_menu where menu_type in(0,1)
+        order  by parent_id ,order_num
+    </select>
+<!--根据用于id查询当前用户-->
+    <select id="selectMenuMCByUserId" resultMap="BaseResultMap">
+        select distinct t1.*
+        from sys_menu t1
+        left join sys_role_menu on t1.menu_id = srm.menu_id
+        left join sys_usr_role sur on srm.role_id = sur.role_id
+        where sur.user_id =#{userId} and  t1.menu_type in(0,1)
+    </select>
+</mapper>
