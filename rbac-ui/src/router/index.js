@@ -110,6 +110,15 @@ export const asyncRoutes = [
           title: '部门管理',
           icon: 'lock'
         }
+      },
+      {
+        path: 'menu',
+        component: () => import('@/views/system/menu/sys-menu-list'),
+        name: 'menu',
+        meta: {
+          title: '菜单管理',
+          icon: 'lock'
+        }
       }
     ]
   },

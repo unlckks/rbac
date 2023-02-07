@@ -125,6 +125,7 @@ export default {
     }
   },
   created() {
+    //添加弹出层中的数据
     sysDeptApi.listDept({}).then(res => {
       this.deptOptions = handleTree(res.data, 'deptId')
     })
