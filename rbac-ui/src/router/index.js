@@ -119,6 +119,15 @@ export const asyncRoutes = [
           title: '菜单管理',
           icon: 'lock'
         }
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/system/role/sys-role-list'),
+        name: 'role',
+        meta: {
+          title: '角色管理',
+          icon: 'lock'
+        }
       }
     ]
   },
