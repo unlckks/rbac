@@ -1,7 +1,6 @@
 package com.powernode.service.impl;
 
 import com.powernode.constants.CoreConstant;
-import com.powernode.domain.SysDept;
 import com.powernode.domain.SysUser;
 import com.powernode.enums.StateEnums;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import com.powernode.domain.SysMenu;
 import com.powernode.mapper.SysMenuMapper;
 import com.powernode.service.SysMenuService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

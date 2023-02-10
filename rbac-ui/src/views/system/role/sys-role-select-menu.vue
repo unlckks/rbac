@@ -1,15 +1,14 @@
 <template>
   <div>
-    <div>
-      <el-tree
-        ref="authTree"
-        :data="menuTree"
-        show-checkbox
-        node-key="menuId"
-        default-expand-all
-        :props="defaultProps">
-      </el-tree>
-    </div>
+    <el-tree
+      ref="menuTree"
+      :data="menuList"
+      show-checkbox
+      node-key="menuId"
+      empty-text="暂无数据"
+      :default-expand-all="true"
+      :props="{ children: 'children', label: 'menuName'}">
+    </el-tree>
     <div style="text-align: center">
       <el-button type="primary" @click="saveRoleMenu">保存角色和菜单</el-button>
     </div>
@@ -17,67 +16,61 @@
 </template>
 
 <script>
-import sysRoleApi from '@/api/system/sysRole'
 import sysMenuApi from "@/api/system/sysMenu"
+import sysRoleApi from "@/api/system/sysRole"
 import {handleTree} from "@/utils/leige";
+
 export default {
-  props: {
-    // 父组件传递的角色ID
-    activeId: {
-      type: Number,
-      default: null
+  name: "sys-role-select-menu",
+  props:{
+    activeId:{
+      type:Number,
+      default:undefined
     }
   },
   watch: {
     activeId: {
       immediate: true,
       handler: function(newVal, oldVal) {
-        //根据角色ID查询当前角色拥有的权限菜单
-        this.getCurrentRoleHasMenuIds(newVal);
+        this.getCurrentRoleHasMenuIdsByRoleId(newVal)
       }
     }
   },
-  name: "sys-role-update" ,
-  data() {
-    return {
-      menuTree: [],
-      defaultProps:{
-        children: 'children',
-        label: 'menuName'
-      }
+  data(){
+    return{
+      menuList:[]
     }
   },
   created() {
-    //查询所有菜单权限
-    this.getMenuTreeList();
+    sysMenuApi.listMenu({status:0}).then(res=>{
+      this.menuList=handleTree(res.data,"menuId");
+    });
+
   },
-  methods: {
-    //查询所有菜单权限数据
-    getMenuTreeList(){
-      sysMenuApi.listMenu().then(res=>{
-        this.menuTree=handleTree(res.data,"menuId");
-        console.log(this.menuTree)
-      })
-    },
-    //根据角色ID查询当前角色拥有的权限菜单
-    getCurrentRoleHasMenuIds(roleId){
+  methods:{
+    //根据角色ID查询当前用户拥有的角色ID
+    getCurrentRoleHasMenuIdsByRoleId(roleId){
       sysRoleApi.getCurrentRoleHasMenuIdsByRoleId(roleId).then(res=>{
-        console.log(res.data);
-        // 手动设置选中
-        this.$refs['authTree'].setCheckedKeys(res.data)
+        console.log(res.data)
+        this.$refs.menuTree.setCheckedKeys(res.data)
       })
     },
-    //保存角色和菜单关系
+    //保存角色菜单数据
     saveRoleMenu(){
-      //得到所有选中的key
-      const checkKeys = this.$refs.authTree.getCheckedKeys()
-      //得到所有半选的key
-      const halfCheckKeys = this.$refs.authTree.getHalfCheckedKeys()
+      //得到半选择的菜单ID
+      let halfCheckKeys=this.$refs.menuTree.getHalfCheckedKeys();
+      //得到所有选中的菜单id
+      let checkKeys = this.$refs.menuTree.getCheckedKeys();
       // 合并选中的数组和半选中的数组
       checkKeys.push(...halfCheckKeys)
-      sysRoleApi.saveRoleMenu(this.activeId,checkKeys).then(res => {
-        this.$message.success(res.msg)
-      })
+      //保存数据
+      console.log(this.activeId)
+      console.log(checkKeys)
+      sysRoleApi.saveRoleMenu(this.activeId,checkKeys).then(res=>{
+        this.$message.success("分配菜单权限成功");
+        this.$emit("after");
+        this.$emit("close");
+      });
     }
   }
 }

@@ -23,6 +23,13 @@ import dictTag from '@/components/DictTag'
 //声明全局组件
 Vue.component("dict-tag",dictTag)
 
+
+//menu进行封装方法,在src中可直接用 this.getDictDataByDictType
+import sysDictDataType from "@/api/system/sysDictData";
+Vue.prototype.getDictDataByDictType=sysDictDataType.getDictDataByDictType ;
+//user中封装this.getDataByType方法
+Vue.prototype.getDataByType=sysDictDataType.getDictDataByDictType ;
+
 import * as filters from './filters' // global filters
 
 /**

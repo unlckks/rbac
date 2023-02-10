@@ -1,6 +1,5 @@
 package com.powernode.utils;
 
-import cn.hutool.extra.servlet.ServletUtil;
 import com.powernode.constants.CoreConstant;
 import com.powernode.domain.SysUser;
 

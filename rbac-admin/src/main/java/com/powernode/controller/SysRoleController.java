@@ -17,7 +17,7 @@ import java.util.List;
  * @Date: 2023-02-08 11:06
  */
 @RestController
-@RequestMapping("/sysRole")
+@RequestMapping("sysRole")
 public class SysRoleController extends BaseController{
     @Resource
     private SysRoleService roleService;
@@ -115,15 +115,51 @@ public class SysRoleController extends BaseController{
      *   接口地址：https://www.apifox.cn/link/project/2245479/apis/api-60129624
      */
     @PostMapping("saveRoleMenu")
-    public  Result saveRoleMenu(Long roleId, Long[] menuIds){
-        if(roleId == 0 ){
+    public  Result saveRoleMenu( Long roleId, Long[] menuIds){
+        if(roleId == null ){
             return new Result(ResultEnums.ERROR,"角色不能为空");
         }
         this.roleService.saveRoleMenu(roleId,menuIds);
         return new Result("保存成功");
-
     }
 
+    /**
+     * 查询所有角色不分页
+     *   GET http://127.0.0.1:8080/sysRole/
+     *   接口ID：60129631
+     *   接口地址：https://www.apifox.cn/link/project/2245479/apis/api-60129631
+     */
+    @GetMapping("getAllRoles")
+    public Result getAllRoles(){
+      List<SysRole>  roles= this.roleService.queryAllRoles();
+         return  new Result(roles);
+    }
 
+    /**
+     * 根据用户ID查询用户已拥有的角色IDS
+     *   GET http://127.0.0.1:8080/sysRole/getRoleIdsByUserId/{userId}
+     *   接口ID：60129632
+     *   接口地址：https://www.apifox.cn/link/project/2245479/apis/api-60129632
+     */
+       @GetMapping("getRoleIdsByUserId/{userId}")
+    public  Result getRoleIdsByUserId(@PathVariable Long userId){
+           List<Long> roleId =this.roleService.queryRoleIdsByUserId(userId);
+           return  new Result(roleId);
+       }
+    /**
+     * 保存用户和角色之间的关系
+     *   POST http://127.0.0.1:8080/sysRole/saveUserRoles
+     *   接口ID：60129633
+     *   接口地址：https://www.apifox.cn/link/project/2245479/apis/api-60129633
+     */
+    @PostMapping("saveUserRoles")
+    public  Result saveUserRoles (Long userId ,Long[] roleIds){
+        //判断用户id 为null
+        if (userId == null){
+            return new Result(ResultEnums.ERROR,"用户编号不能为空");
+        }
+            this.roleService.saveUserRoles(userId,roleIds);
+        return new Result( ) ;
+    }
 
 }

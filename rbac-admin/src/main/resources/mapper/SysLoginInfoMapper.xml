@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powernode.mapper.SysLoginInfoMapper">
+  <resultMap id="BaseResultMap" type="com.powernode.domain.SysLoginInfo">
+    <!--@mbg.generated-->
+    <!--@Table sys_login_info-->
+    <id column="info_id" property="infoId" />
+    <result column="user_name" property="userName" />
+    <result column="ip_addr" property="ipAddr" />
+    <result column="login_location" property="loginLocation" />
+    <result column="browser" property="browser" />
+    <result column="os" property="os" />
+    <result column="status" property="status" />
+    <result column="msg" property="msg" />
+    <result column="login_time" property="loginTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    info_id, user_name, ip_addr, login_location, browser, os, `status`, msg, login_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_login_info
+    where info_id = #{infoId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sys_login_info
+    where info_id = #{infoId}
+  </delete>
+  <insert id="insert" keyColumn="info_id" keyProperty="infoId" parameterType="com.powernode.domain.SysLoginInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_login_info (user_name, ip_addr, login_location, browser, os, `status`, msg, 
+      login_time)
+    values (#{userName}, #{ipAddr}, #{loginLocation}, #{browser}, #{os}, #{status}, #{msg}, 
+      #{loginTime})
+  </insert>
+  <insert id="insertSelective" keyColumn="info_id" keyProperty="infoId" parameterType="com.powernode.domain.SysLoginInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_login_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="ipAddr != null">
+        ip_addr,
+      </if>
+      <if test="loginLocation != null">
+        login_location,
+      </if>
+      <if test="browser != null">
+        browser,
+      </if>
+      <if test="os != null">
+        os,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="msg != null">
+        msg,
+      </if>
+      <if test="loginTime != null">
+        login_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName},
+      </if>
+      <if test="ipAddr != null">
+        #{ipAddr},
+      </if>
+      <if test="loginLocation != null">
+        #{loginLocation},
+      </if>
+      <if test="browser != null">
+        #{browser},
+      </if>
+      <if test="os != null">
+        #{os},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="msg != null">
+        #{msg},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.powernode.domain.SysLoginInfo">
+    <!--@mbg.generated-->
+    update sys_login_info
+    <set>
+      <if test="userName != null">
+        user_name = #{userName},
+      </if>
+      <if test="ipAddr != null">
+        ip_addr = #{ipAddr},
+      </if>
+      <if test="loginLocation != null">
+        login_location = #{loginLocation},
+      </if>
+      <if test="browser != null">
+        browser = #{browser},
+      </if>
+      <if test="os != null">
+        os = #{os},
+      </if>
+      <if test="status != null">
+        `status` = #{status},
+      </if>
+      <if test="msg != null">
+        msg = #{msg},
+      </if>
+      <if test="loginTime != null">
+        login_time = #{loginTime},
+      </if>
+    </set>
+    where info_id = #{infoId}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.powernode.domain.SysLoginInfo">
+    <!--@mbg.generated-->
+    update sys_login_info
+    set user_name = #{userName},
+      ip_addr = #{ipAddr},
+      login_location = #{loginLocation},
+      browser = #{browser},
+      os = #{os},
+      `status` = #{status},
+      msg = #{msg},
+      login_time = #{loginTime}
+    where info_id = #{infoId}
+  </update>
+
+  <select id="queryAllSysLoginInfo" resultMap="BaseResultMap">
+     select  <include refid="Base_Column_List">
+  </include> from  sys_login_info
+    <where>
+      <if test="params.userName != null  and  params.userName != ''">
+        and usr_name like  concat('%',#{params.userName},'%')
+      </if>
+      <if test="params.status !=null  and params.status !=''">
+        and status = #{params.status}
+      </if>
+      <if test="params.startTime != null ">
+        and login_time >= #{params.startTime}
+      </if>
+      <if test="params.endTime != null">
+        and login_time <![CDATA[<=]]> #{params.endTime}
+      </if>
+    </where>
+    order  by login_time desc
+  </select>
+</mapper>

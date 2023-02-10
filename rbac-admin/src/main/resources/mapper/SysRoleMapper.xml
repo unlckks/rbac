@@ -4,52 +4,55 @@
   <resultMap id="BaseResultMap" type="com.powernode.domain.SysRole">
     <!--@mbg.generated-->
     <!--@Table sys_role-->
-    <id column="role_id" property="roleId" />
-    <result column="role_name" property="roleName" />
-    <result column="role_sort" property="roleSort" />
-    <result column="remark" property="remark" />
-    <result column="status" property="status" />
-    <result column="del_flag" property="delFlag" />
-    <result column="create_by" property="createBy" />
-    <result column="create_time" property="createTime" />
-    <result column="update_by" property="updateBy" />
-    <result column="update_time" property="updateTime" />
+    <id column="role_id" property="roleId"/>
+    <result column="role_name" property="roleName"/>
+    <result column="role_sort" property="roleSort"/>
+    <result column="remark" property="remark"/>
+    <result column="status" property="status"/>
+    <result column="del_flag" property="delFlag"/>
+    <result column="create_by" property="createBy"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_by" property="updateBy"/>
+    <result column="update_time" property="updateTime"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    role_id, role_name, role_sort, remark, `status`, del_flag, create_by, create_time, 
+    role_id, role_name, role_sort, remark, `status`, del_flag, create_by, create_time,
     update_by, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
+    select
+    <include refid="Base_Column_List"/>
     from sys_role
     where role_id = #{roleId}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
-    delete from sys_role
+    delete
+    from sys_role
     where role_id = #{roleId}
   </delete>
-  <insert id="insert" keyColumn="role_id" keyProperty="roleId" parameterType="com.powernode.domain.SysRole" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="role_id" keyProperty="roleId" parameterType="com.powernode.domain.SysRole"
+          useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into sys_role (role_name, role_sort, remark, `status`, del_flag, create_by, 
-      create_time, update_by, update_time)
-    values (#{roleName}, #{roleSort}, #{remark}, #{status}, #{delFlag}, #{createBy}, 
-      #{createTime}, #{updateBy}, #{updateTime})
+    insert into sys_role (role_name, role_sort, remark, `status`, del_flag, create_by,
+    create_time, update_by, update_time)
+    values (#{roleName}, #{roleSort}, #{remark}, #{status}, #{delFlag}, #{createBy},
+    #{createTime}, #{updateBy}, #{updateTime})
   </insert>
-  <insert id="insertSelective" keyColumn="role_id" keyProperty="roleId" parameterType="com.powernode.domain.SysRole" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="role_id" keyProperty="roleId" parameterType="com.powernode.domain.SysRole"
+          useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="roleName != null">
+      <if test="roleName != null and roleName != ''">
         role_name,
       </if>
       <if test="roleSort != null">
         role_sort,
       </if>
-      <if test="remark != null">
+      <if test="remark != null and remark != ''">
         remark,
       </if>
       <if test="status != null">
@@ -58,13 +61,13 @@
       <if test="delFlag != null">
         del_flag,
       </if>
-      <if test="createBy != null">
+      <if test="createBy != null and createBy != ''">
         create_by,
       </if>
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="updateBy != null">
+      <if test="updateBy != null and updateBy != ''">
         update_by,
       </if>
       <if test="updateTime != null">
@@ -72,13 +75,13 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="roleName != null">
+      <if test="roleName != null and roleName != ''">
         #{roleName},
       </if>
       <if test="roleSort != null">
         #{roleSort},
       </if>
-      <if test="remark != null">
+      <if test="remark != null and remark != ''">
         #{remark},
       </if>
       <if test="status != null">
@@ -87,13 +90,13 @@
       <if test="delFlag != null">
         #{delFlag},
       </if>
-      <if test="createBy != null">
+      <if test="createBy != null and createBy != ''">
         #{createBy},
       </if>
       <if test="createTime != null">
         #{createTime},
       </if>
-      <if test="updateBy != null">
+      <if test="updateBy != null and updateBy != ''">
         #{updateBy},
       </if>
       <if test="updateTime != null">
@@ -105,13 +108,13 @@
     <!--@mbg.generated-->
     update sys_role
     <set>
-      <if test="roleName != null">
+      <if test="roleName != null and roleName != ''">
         role_name = #{roleName},
       </if>
       <if test="roleSort != null">
         role_sort = #{roleSort},
       </if>
-      <if test="remark != null">
+      <if test="remark != null and remark != ''">
         remark = #{remark},
       </if>
       <if test="status != null">
@@ -120,13 +123,13 @@
       <if test="delFlag != null">
         del_flag = #{delFlag},
       </if>
-      <if test="createBy != null">
+      <if test="createBy != null and createBy != ''">
         create_by = #{createBy},
       </if>
       <if test="createTime != null">
         create_time = #{createTime},
       </if>
-      <if test="updateBy != null">
+      <if test="updateBy != null and updateBy != ''">
         update_by = #{updateBy},
       </if>
       <if test="updateTime != null">
@@ -138,18 +141,19 @@
   <update id="updateByPrimaryKey" parameterType="com.powernode.domain.SysRole">
     <!--@mbg.generated-->
     update sys_role
-    set role_name = #{roleName},
-      role_sort = #{roleSort},
-      remark = #{remark},
-      `status` = #{status},
-      del_flag = #{delFlag},
-      create_by = #{createBy},
-      create_time = #{createTime},
-      update_by = #{updateBy},
-      update_time = #{updateTime}
+    set role_name   = #{roleName},
+    role_sort   = #{roleSort},
+    remark      = #{remark},
+    `status`    = #{status},
+    del_flag    = #{delFlag},
+    create_by   = #{createBy},
+    create_time = #{createTime},
+    update_by   = #{updateBy},
+    update_time = #{updateTime}
     where role_id = #{roleId}
   </update>
 
+  <!--根据条件查询角色-->
   <select id="queryAllRole" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List">
@@ -165,35 +169,68 @@
       and del_flag = 0
     </where>
     order by role_sort
-    </select>
-<!--根据角色id查询当前角色拥有的目录权限与菜单id-->
-  <select id="queryCurrentRoleHasMenuIdsByRoleId" resultType="java.lang.Long">
-    select m.menu_id
-    from sys_menu m
-    inner join sys_role_menu rm on (m.menu_id = rm.menu_id)
-    where m.status = '0'
-    and rm.role_id = #{roleId}
-    and m.menu_id not in (
-    select tm.parent_id
-    from sys_menu tm
-    inner join sys_role_menu s on tm.menu_id = s.menu_id
-    and s.role_id = #{roleId})
   </select>
-  <!--根据角色ID删除角色和菜单关系表的数据-->
+
+  <!--根据角色ID删除角色和菜单的关系-->
   <delete id="deleteRoleMenuByRoleId">
     delete
     from sys_role_menu
-    where role_id =#{roleId}
+    where role_id = #{roleId}
   </delete>
-<!--根据角色ID删除角色和用户关系表的数据-->
-  <delete id="deleteRoleUserByRoleId">
+  <!--根据角色ID删除角色和用户的关系-->
+  <delete id="deleteUserRoleByRoleId">
     delete
     from sys_user_role
-    where role_id =#{roleId}
+    where role_id = #{roleId}
   </delete>
+  <!--根据角色ID查询当前角色拥有的权限菜单[有问题]-->
+  <select id="queryCurrentRoleHasMenuIdsByRoleId" resultType="java.lang.Long">
+    select t1.menu_id
+    from sys_menu t1
+    inner join sys_role_menu srm on t1.menu_id = srm.menu_id
+    where srm.role_id = #{roleId}
+    and t1.menu_id not in (
+    select t1.parent_id
+    from sys_menu t1
+    inner join sys_role_menu srm on t1.menu_id = srm.menu_id
+    where srm.role_id = #{roleId}
+    );
+  </select>
 
   <insert id="saveRoleMenu">
-     insert into sys_role_menu(role_id ,menu_id)
-       values (#{roleId},#{menuId})
+    insert into sys_role_menu(role_id, menu_id)
+    values (#{roleId}, #{menuId})
   </insert>
+
+  <!--批量保存角色 和菜单关系-->
+  <insert id="saveRoleMenuBatch">
+    insert into sys_role_menu(role_id, menu_id)
+    <foreach collection="menuIds" open=" values" item="mid" separator=",">
+      (#{roleId}, #{mid})
+    </foreach>
+  </insert>
+
+  <!--删除当前用户ID对应的角色关系-->
+  <delete id="deleteUserRoleByUserId">
+    delete
+    from sys_user_role
+    where user_id = #{userId}
+  </delete>
+
+  <!--根据用户ID查询用户已拥有的角色IDS-->
+  <select id="queryRoleIdsByUserId" resultType="java.lang.Long">
+    select role_id
+    from sys_user_role
+    where user_id = #{userId}
+  </select>
+
+  <!--保存角色和用户的有关系数据-->
+  <insert id="saveUserRoles">
+    insert into sys_user_role(user_id, role_id)
+    <foreach collection="roleIds" open=" values" item="rid" separator=",">
+      (#{userId}, #{rid})
+    </foreach>
+  </insert>
+
+
 </mapper>

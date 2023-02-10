@@ -4,10 +4,11 @@ import com.powernode.domain.SysUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
- * @Author: MingYun
- * @Date: 2023-02-03 15:09
+ *  @Author: MingYun
+ *  @Date: 2023-02-09 15:59
  */
 public interface SysUserMapper {
     int deleteByPrimaryKey(Long userId);
@@ -23,7 +24,7 @@ public interface SysUserMapper {
     int updateByPrimaryKey(SysUser record);
 
     /**
-     * 登录方法
+     * 用户登录
      *
      * @param username
      * @param password
@@ -32,15 +33,33 @@ public interface SysUserMapper {
     SysUser login(@Param("username") String username, @Param("password") String password);
 
     /**
-     * 查询所有用户权限
+     * 查询所有权限
+     *
      * @return
      */
     List<String> queryAllPermissions();
 
     /**
-     * 根据用户id查询权限
+     * 根据用户ID查询权限
+     *
      * @param userId
      * @return
      */
     List<String> queryPermissionsByUserId(@Param("userId") Long userId);
+
+    /**
+     * 根据条件查询用户数据
+     *
+     * @param params
+     * @return
+     */
+    List<SysUser> queryAllUser(@Param("params") Map<String, Object> params);
+
+    /**
+     * 根据用户名查询用户对象
+     *
+     * @param userName
+     * @return
+     */
+    SysUser queryUserByUserName(@Param("userName") String userName);
 }

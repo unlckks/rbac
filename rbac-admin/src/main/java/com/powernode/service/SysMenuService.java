@@ -1,6 +1,5 @@
 package com.powernode.service;
 
-import com.powernode.domain.SysDept;
 import com.powernode.domain.SysMenu;
 import com.powernode.domain.SysUser;
 

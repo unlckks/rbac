@@ -72,4 +72,37 @@ export default {
       method: 'post'
     })
   },
+  /**
+   * 查询所有角色不分页
+   */
+  getAllRoles() {
+    return request({
+      url: `/${groupName}/getAllRoles`,
+      method: 'get',
+    })
+  },
+  /**
+   * 查询当前用户已拥有的角色IDS
+   */
+  getRoleIdsByUserId(userId) {
+    return request({
+      url: `/${groupName}/getRoleIdsByUserId/`+userId,
+      method: 'get',
+    })
+  },
+  /**
+   * 保存用户和角色之间的关系
+   */
+  saveUserRoles(userId,roleIds){
+    let params="userId="+userId
+    roleIds.filter(roleId=>{
+      params+="&roleIds="+roleId
+    })
+    return request({
+      url: `/${groupName}/saveUserRoles?`+params,
+      method: 'post'
+    })
+  }
+
+
 }

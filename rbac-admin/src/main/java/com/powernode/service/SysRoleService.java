@@ -44,4 +44,24 @@ public interface SysRoleService{
      * @param menuIds
      */
     void saveRoleMenu(Long roleId, Long[] menuIds);
+
+    /**
+     * 查询所有角色不分页
+     * @return
+     */
+    List<SysRole> queryAllRoles();
+
+    /**
+     * 根据用户ID查询用户已拥有的角色IDS
+     * @param userId
+     * @return
+     */
+    List<Long> queryRoleIdsByUserId(Long userId);
+
+    /**
+     * 保存用户和角色之间的关系
+     * @param userId
+     * @param roleIds
+     */
+    void saveUserRoles(Long userId, Long[] roleIds);
 }
