@@ -1,37 +1,38 @@
-# rbac管理
+<h4 align="center">Based springMVC role-based access control</h4>
 
-#### 介绍
-rbac management
+## Project Description
 
-#### 软件架构
-软件架构说明
+Always wanted to do a generic backend management system scaffolding , look at a lot of good open source projects. 
+So use the free time off to start their own reference projects to do a back-end system . 
+All the front-end back-end code encapsulated very simple to start , low probability of error , while supporting mobile client access.
 
+## Functions
 
-#### 安装教程
+1. user management: user is the system operator, this function mainly completes the system user configuration.
+2. Department Management: Configure the system organization (company, department, group).
+3. Position management: configure the system users belong to hold positions.
+4. menu management: configure the system menu, operation privileges, button privilege identification, etc.
+5. role management: role menu permission assignment, set the role of data scope authority by organization.
+6. dictionary management: maintenance of some more fixed data often used in the system.
+7. Parameter management: Dynamic configuration of common parameters for the system.
+8. Notification: System notification announcement information release maintenance.
+9. operation log: system normal operation log record and query; system abnormal information log record and query.
+10. logging log: system logging log records and queries include logging exceptions.
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+## Demo images
 
 
-#### 特技
+<table>
+    <tr>
+        <td><img src="https://i.postimg.cc/NMszfFrn/Snipaste-2023-04-20-13-49-07.png"/></td>
+        <td><img src="https://i.postimg.cc/X4jsDBLn/Snipaste-2023-04-20-13-56-06.png"/></td>
+        <td><img src="https://i.postimg.cc/X4jsDBLn/Snipaste-2023-04-20-13-56-06.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://i.postimg.cc/NsPRJLjj/Snipaste-2023-04-20-13-56-32.png"/></td>
+        <td><img src="https://i.postimg.cc/y6sCG6Q2/Snipaste-2023-04-20-13-57-04.png"/></td>
+        <td><img src="https://i.postimg.cc/nhBkxbTg/Snipaste-2023-04-20-14-12-17.png"/></td>
+    </tr>
+    <tr>
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+</table>
