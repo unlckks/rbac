@@ -1,4 +1,4 @@
-<h4 align="center">Based springMVC role-based access control</h4>
+<h4 align="center">Based SpringMVC role-based access control</h4>
 
 ## Project Description
 
