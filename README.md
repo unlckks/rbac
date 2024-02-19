@@ -30,7 +30,7 @@ cd rbac-ui
 ```create modle package
 npm install
 
-## AboutTheProject
+## About The Project
 
 <table>
     <tr>
