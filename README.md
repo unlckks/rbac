@@ -10,6 +10,7 @@ Always wanted to do a generic backend management system scaffolding , look at a 
 So use the free time off to start their own reference projects to do a back-end system . 
 All the front-end back-end code encapsulated very simple to start , low probability of error , while supporting mobile client access.
 
+
 ## Features
 
 1. user management: user is the system operator, this function mainly completes the system user configuration.
@@ -22,16 +23,9 @@ All the front-end back-end code encapsulated very simple to start , low probabil
 8. Notification: System notification announcement information release maintenance.
 9. Operation log: system normal operation log record and query; system abnormal information log record and query.
 10. Logging log: system logging log records and queries include logging exceptions.
+ 
 
-### Run Local
-```bash
-cd rbac-ui
-
-```create modle package
-npm install
-
-## About The Project
-
+## Demo images
 <table>
     <tr>
         <td><img src="https://i.postimg.cc/NMszfFrn/Snipaste-2023-04-20-13-49-07.png"/></td>
