@@ -1,12 +1,16 @@
 <h4 align="center">Based SpringMVC role-based access control</h4>
 
-## Project Description
+
+
+## Introduction
+
+- [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Always wanted to do a generic backend management system scaffolding , look at a lot of good open source projects. 
 So use the free time off to start their own reference projects to do a back-end system . 
 All the front-end back-end code encapsulated very simple to start , low probability of error , while supporting mobile client access.
 
-## Functions
+## Features
 
 1. user management: user is the system operator, this function mainly completes the system user configuration.
 2. Department Management: Configure the system organization (company, department, group).
@@ -16,11 +20,17 @@ All the front-end back-end code encapsulated very simple to start , low probabil
 6. dictionary management: maintenance of some more fixed data often used in the system.
 7. Parameter management: Dynamic configuration of common parameters for the system.
 8. Notification: System notification announcement information release maintenance.
-9. operation log: system normal operation log record and query; system abnormal information log record and query.
-10. logging log: system logging log records and queries include logging exceptions.
+9. Operation log: system normal operation log record and query; system abnormal information log record and query.
+10. Logging log: system logging log records and queries include logging exceptions.
 
-## Demo images
+### Run Local
+```bash
+cd rbac-ui
 
+```create modle package
+npm install
+
+## AboutTheProject
 
 <table>
     <tr>
